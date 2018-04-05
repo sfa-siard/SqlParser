@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Created-By: Hartwig Thomas, Enter AG, Rüti ZH, Switzerland
+Specification-Title: SQL Parser
+Specification-Version: 1
+Specification-Vendor: Enter AG, Rüti ZH, Switzerland
+Implementation-Title: SQL Parser
+Implementation-Version: 1.0.75
+Implementation-Vendor: Enter AG, Rüti ZH, Switzerland
+Built-Date: 29. Mar 2018
+Class-Path: antlr-runtime-4.5.2.jar

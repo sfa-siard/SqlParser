@@ -1,0 +1,8 @@
+Release Notes for SqlParser 1.0
+===============================
+
+1.0.18:
+First release of SqlParser.
+
+1.0.21
+Small corrections in manuals.
