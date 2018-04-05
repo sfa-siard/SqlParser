@@ -222,7 +222,6 @@ Created    : 13.02.2018, Hartwig Thomas
 		<echo message="generate parser classes"/>
     <java classpath="${dirlib}/${jarantlr4complete}"
       classname="org.antlr.v4.Tool"
-      dir="${dirsqlparser}"
       fork="true"
       failonerror="true">
       <jvmarg value="-Dfile.encoding=UTF-8"/>
@@ -234,7 +233,7 @@ Created    : 13.02.2018, Hartwig Thomas
       <arg value="${dirgenerated}"/>
       <arg value="-package"/>
       <arg value="ch.enterag.sqlparser.generated"/>
-      <arg value="Sql.g4"/>
+      <arg value="${dirsqlparser}/Sql.g4"/>
     </java>
 	</target>
 	
