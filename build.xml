@@ -52,6 +52,7 @@ Created    : 13.02.2018, Hartwig Thomas
     <delete dir="${dirtmp}"/>
     <delete dir="${dirdist}"/>
     <delete dir="${dirjavadoc}"/>
+  	<delete dir="${dirgenerated}"/>
   </target>
   
   <!-- create build folders -->
@@ -230,7 +231,7 @@ Created    : 13.02.2018, Hartwig Thomas
       <arg value="-visitor"/>
       <arg value="-no-listener"/>
       <arg value="-o"/>
-      <arg value="${dirgenerated}"/>
+      <arg value="../../${dirgenerated}"/>
       <arg value="-package"/>
       <arg value="ch.enterag.sqlparser.generated"/>
       <arg value="${dirsqlparser}/Sql.g4"/>
