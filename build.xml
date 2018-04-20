@@ -224,6 +224,7 @@ Created    : 13.02.2018, Hartwig Thomas
     <java classpath="${dirlib}/${jarantlr4complete}"
       classname="org.antlr.v4.Tool"
       fork="true"
+    	dir="${dirsqlparser}"
       failonerror="true">
       <jvmarg value="-Dfile.encoding=UTF-8"/>
       <arg value="-encoding"/>
@@ -231,10 +232,10 @@ Created    : 13.02.2018, Hartwig Thomas
       <arg value="-visitor"/>
       <arg value="-no-listener"/>
       <arg value="-o"/>
-      <arg value="${dirgenerated}"/>
+      <arg value="../../${dirgenerated}"/>
       <arg value="-package"/>
       <arg value="ch.enterag.sqlparser.generated"/>
-      <arg value="${dirsqlparser}/Sql.g4"/>
+      <arg value="Sql.g4"/>
     </java>
 	</target>
 	
