@@ -7,3 +7,6 @@ First release of SqlParser on GitHub.
 1.0.82:
 .gitattributes added.
 src folder under sqlparser deleted.
+
+1.0.88:
+generate in build.xml fixed. 
