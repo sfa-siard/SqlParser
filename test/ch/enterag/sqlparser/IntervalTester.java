@@ -2,8 +2,7 @@ package ch.enterag.sqlparser;
 
 import static org.junit.Assert.*;
 import org.junit.*;
-
-import ch.enterag.utils.EU;
+import ch.enterag.utils.*;
 
 import javax.xml.datatype.*;
 

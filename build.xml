@@ -291,7 +291,7 @@ Created    : 13.02.2018, Hartwig Thomas
       source="${source}" 
       target="${target}"
       encoding="UTF-8"
-      classpath="${cpjunit};${dirdist}/${jarfile}"
+      classpath="${cpjunit};${cpenterutils};${dirdist}/${jarfile}"
       srcdir="${dirtest}"
       destdir="${dirbuildtests}">
     </javac>
