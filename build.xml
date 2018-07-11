@@ -394,7 +394,8 @@ Created    : 13.02.2018, Hartwig Thomas
     <echo message="${ant.project.name}: javadoc"/>
     <javadoc 
     	access="public" 
-    	author="true" 
+    	author="true"
+    	additionalparam="&quot;-html5&quot;"
     	classpath="${cpantlr};${cpenterutils}"
     	destdir="${dirjavadoc}" 
     	doctitle="SQL Parser" 
