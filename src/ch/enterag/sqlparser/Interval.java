@@ -428,7 +428,7 @@ public class Interval
         duration = df.newDurationDayTime(lMilliSeconds);
       }
     }
-    catch(DatatypeConfigurationException dcf){}
+    catch(DatatypeConfigurationException dcfe){}
     return duration;
   } /* toDuration */
   
@@ -463,7 +463,7 @@ public class Interval
       lMillis = 1000;
       int iSeconds = (int)(lMilliSeconds / lMillis);
       lMilliSeconds = lMilliSeconds % lMillis;
-      long lNanoSeconds = 1000*lMilliSeconds;
+      long lNanoSeconds = 1000000l*lMilliSeconds;
       iv = new Interval(iSign,iDays,iHours,iMinutes,iSeconds,lNanoSeconds);
     }
     return iv;
