@@ -1,12 +1,16 @@
 Release Notes for SqlParser 1.0
 ===============================
 
-1.0.75:
-First release of SqlParser on GitHub.
+1.1.0
+Release for JAVA 10
+Error in computation of milliseconds in Interval.toDuration() fixed.
+
+1.0.88:
+generate in build.xml fixed.
 
 1.0.82:
 .gitattributes added.
 src folder under sqlparser deleted.
-
-1.0.88:
-generate in build.xml fixed. 
+ 
+1.0.75:
+First release of SqlParser on GitHub.
