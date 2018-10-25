@@ -9,7 +9,7 @@ public interface SqlFactory
 {
   /*------------------------------------------------------------------*/
   /** set indicator that COUNT(*) aggregate function has been encountered.
-   * @param bAggregates true, if COUNT(*) aggregate function has been encountered. */
+   * @param bCount true, if COUNT(*) aggregate function has been encountered. */
   public void setCount(boolean bCount);
   /*------------------------------------------------------------------*/
   /** check indicator, whether COUNT(*) aggregate functions have been encountered
