@@ -169,7 +169,7 @@ public class QuerySpecification
   
   public boolean isCount()
   {
-    boolean bCount = hasCount() && (getSelectSublists().size() == 1);
+    boolean bCount = hasCount() && (getSelectSublists().size() == 1) && (getWhereCondition() == null);
     return bCount;
   }
   /*------------------------------------------------------------------*/
