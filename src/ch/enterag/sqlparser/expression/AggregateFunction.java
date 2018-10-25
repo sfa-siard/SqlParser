@@ -127,7 +127,11 @@ public class AggregateFunction
   /* count function */
   private boolean _bCountFunction = false;
   public boolean isCountFunction() { return _bCountFunction; }
-  public void setCountFunction(boolean bCountFunction) { _bCountFunction = bCountFunction; }
+  public void setCountFunction(boolean bCountFunction) 
+  {
+    _bCountFunction = bCountFunction;
+    getSqlFactory().setCount(true);
+  }
   
   /* set function */
   private SetFunction _sf = null;

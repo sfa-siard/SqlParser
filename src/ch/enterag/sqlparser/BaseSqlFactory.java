@@ -12,6 +12,10 @@ public class BaseSqlFactory
   public boolean hasAggregates() { return _bAggregates; }
   public void setAggregates(boolean bAggregates) { _bAggregates = bAggregates; }
   
+  private boolean _bCount = false;
+  public boolean hasCount() { return _bCount; }
+  public void setCount(boolean bCount) { _bCount = bCount; }
+  
   public IntervalQualifier newIntervalQualifier()
   {
     return new IntervalQualifier(this);

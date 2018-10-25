@@ -8,12 +8,21 @@ import ch.enterag.sqlparser.expression.*;
 public interface SqlFactory
 {
   /*------------------------------------------------------------------*/
+  /** set indicator that COUNT(*) aggregate function has been encountered.
+   * @param bAggregates true, if COUNT(*) aggregate function has been encountered. */
+  public void setCount(boolean bCount);
+  /*------------------------------------------------------------------*/
+  /** check indicator, whether COUNT(*) aggregate functions have been encountered
+   * since they were reset last. 
+   * @return true, if COUNT(*) aggregate functions were encountered. */
+  public boolean hasCount();
+  
+  /*------------------------------------------------------------------*/
   /** set indicator that aggregate function has been encountered.
    * @param bAggregates true, if aggregate function has been encountered. */
   public void setAggregates(boolean bAggregates);
   /*------------------------------------------------------------------*/
-  
-  /** check indicator, whether aggregage functions have been encountered
+  /** check indicator, whether aggregate functions have been encountered
    * since they were reset last. 
    * @return true, if aggregate functions were encountered. */
   public boolean hasAggregates();
