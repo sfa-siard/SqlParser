@@ -72,6 +72,15 @@ public class QuerySpecificationTester
   }
 
   @Test
+  public void testCount()
+  {
+    _qs.parse("SELECT COUNT(*) AS RECORDS FROM Cat1.Schem1.tab1");
+    assertTrue("COUNT(*) not detected!",_qs.isCount());
+    _qs.parse("SELECT COL1 AS RECORDS FROM Cat1.Schem1.tab1");
+    assertFalse("COUNT(*) reported!",_qs.isCount());
+  }
+  
+  @Test
   public void testCountAndSumQuery()
   {
     long lStart = System.currentTimeMillis();

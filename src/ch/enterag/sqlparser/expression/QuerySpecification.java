@@ -34,6 +34,7 @@ public class QuerySpecification
         setAsterisk(true);
       else
       {
+        getSqlFactory().setCount(false);
         getSqlFactory().setAggregates(false);
         for (int i = 0; i < ctx.selectSublist().size(); i++)
         {
@@ -41,6 +42,8 @@ public class QuerySpecification
           ss.parse(ctx.selectSublist(i));
           getSelectSublists().add(ss);
         }
+        if (getSqlFactory().hasCount())
+          setCount(true);
         if (getSqlFactory().hasAggregates())
           setAggregates(true);
       }
@@ -150,13 +153,25 @@ public class QuerySpecification
   public List<WindowSpecification> getWindowSpecifications() { return _listWindowSpecifications; }
   private void setWindowSpecifications(List<WindowSpecification> listWindowSpecifications) { _listWindowSpecifications = listWindowSpecifications; } 
 
+  private boolean _bCount = false;
+  /** hasCount returns true, if a COUNT(*) aggregate function was detected on parsing a SelectSublist.
+   * @return true, if a select sublist contains an COUNT(*) aggregate function.
+   */
+  public boolean hasCount() { return _bCount; }
+  public void setCount(boolean bCount) { _bCount = bCount; }
+  
   private boolean _bAggregates = false;
   /** hasAggregates returns true, if an aggregate function was detected on parsing a SelectSublist.
-   * @return true, of a select sublist contains an aggregate function.
+   * @return true, if a select sublist contains an aggregate function.
    */
   public boolean hasAggregates() { return _bAggregates; }
   public void setAggregates(boolean bAggregates) { _bAggregates = bAggregates; }
   
+  public boolean isCount()
+  {
+    boolean bCount = hasCount() && (getSelectSublists().size() == 1) && (getWhereCondition() == null);
+    return bCount;
+  }
   /*------------------------------------------------------------------*/
   /** determine if query is grouped.
    * @return true, if query is grouped explicitly or implicitly.
