@@ -123,7 +123,7 @@ public class AlterTableStatement
     else if (getConstraintName().isSet())
       sStatement = sStatement + sSP + K.DROP.getKeyword() + sSP + K.CONSTRAINT.getKeyword() + sSP +
         getConstraintName().format() + sSP + getDropBehavior().getKeywords();
-    return null;
+    return sStatement;
   } /* format */
   
   /*------------------------------------------------------------------*/
