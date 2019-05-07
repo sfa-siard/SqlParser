@@ -4,7 +4,7 @@ Specification-Title: SQL Parser
 Specification-Version: 1
 Specification-Vendor: Enter AG, Rüti ZH, Switzerland
 Implementation-Title: SQL Parser
-Implementation-Version: 1.1.37
+Implementation-Version: 1.1.39
 Implementation-Vendor: Enter AG, Rüti ZH, Switzerland
-Built-Date: 11. Mar 2019
+Built-Date: 06. May 2019
 Class-Path: antlr-runtime-4.5.2.jar
