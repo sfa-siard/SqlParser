@@ -1052,6 +1052,99 @@ public abstract class SqlLiterals
   
   /*------------------------------------------------------------------*/
   /** format an interval value
+   * ISO 9075 2006 Part 2
+   * 
+   * Page 152
+   * 
+   * <interval literal> ::=
+   *   INTERVAL [ <sign> ] <interval string> <interval qualifier>
+   * 
+   * <interval string> ::=
+   *   <quote> <unquoted interval string> <quote>
+   * 
+   * <unquoted interval string> ::=
+   *   [ <sign> ] { <year-month literal> | <day-time literal> }
+   * 
+   * <year-month literal> ::=
+   *     <years value> [ <minus sign> <months value> ]
+   *   | <months value>
+   * 
+   * <day-time literal> ::=
+   *     <day-time interval>
+   *   | <time interval>
+   * 
+   * <day-time interval> ::=
+   *   <days value> [ <space> <hours value> [ <colon> <minutes value>
+   *     [ <colon> <seconds value> ] ] ]
+   * 
+   * <time interval> ::=
+   *     <hours value> [ <colon> <minutes value> [ <colon> <seconds value> ] ]
+   *   | <minutes value> [ <colon> <seconds value> ]
+   *   | <seconds value>
+   * 
+   * <years value> ::=
+   *   <datetime value>
+   * 
+   * <months value> ::=
+   *   <datetime value>
+   * 
+   * <days value> ::=
+   *   <datetime value>
+   * 
+   * <hours value> ::=
+   *   <datetime value>
+   * 
+   * <minutes value> ::=
+   *   <datetime value>
+   * 
+   * <seconds value> ::=
+   *   <seconds integer value> [ <period> [ <seconds fraction> ] ]
+   * 
+   * <seconds integer value> ::=
+   *   <unsigned integer>
+   * 
+   * <seconds fraction> ::=
+   *   <unsigned integer>
+   * 
+   * <datetime value> ::=
+   *   <unsigned integer>
+   * 
+   * Page 497
+   * <interval qualifier> ::=
+   *     <start field> TO <end field>
+   *   | <single datetime field>
+   * 
+   * <start field> ::=
+   *   <non-second primary datetime field>
+   *     [ <left paren> <interval leading field precision> <right paren> ]
+   * 
+   * <end field> ::=
+   *     <non-second primary datetime field>
+   *   | SECOND [ <left paren> <interval fractional seconds precision> <right paren> ]
+   * 
+   * <single datetime field> ::=
+   *     <non-second primary datetime field>
+   *       [ <left paren> <interval leading field precision> <right paren> ]
+   *   | SECOND [ <left paren> <interval leading field precision>
+   *     [ <comma> <interval fractional seconds precision> ] <right paren> ]
+   * 
+   * <primary datetime field> ::=
+   *     <non-second primary datetime field>
+   *   | SECOND
+   * 
+   * <non-second primary datetime field> ::=
+   *     YEAR
+   *   | MONTH
+   *   | DAY
+   *   | HOUR
+   *   | MINUTE
+   * 
+   * <interval fractional seconds precision> ::=
+   *   <unsigned integer>
+   * 
+   * <interval leading field precision> ::=
+   *   <unsigned integer>
+   *   
    * @param ivValue interval value to be formatted.
    * @return interval literal.
    */
@@ -1152,7 +1245,7 @@ public abstract class SqlLiterals
       }
       sFormatted = sINTERVAL_LITERAL_PREFIX + sSP; 
       if (ivValue.getSign() < 0)
-        sFormatted = sFormatted + sMINUS;
+        sFormatted = sFormatted + sMINUS + sSP;
       sFormatted = sFormatted + formatStringLiteral(sValue) + 
         sSP + ifStart.getKeywords();
       if ((iPrecision >= 0) || ((ifStart == IntervalField.SECOND) && (iSecondsPrecision >= 0)))
