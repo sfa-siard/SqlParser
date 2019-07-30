@@ -36,7 +36,7 @@ public class IntervalValueExpressionTester
   {
     _ive.parse("T.COL * ABS(INTERVAL -'46 23:34:12' DAY TO SECOND)");
     // System.out.println(_ive.format());
-    assertEquals("Multiple not recognized!","T.COL*ABS(INTERVAL - '46 23:34:12' DAY TO SECOND)",_ive.format());
+    assertEquals("Multiple not recognized!","T.COL*ABS(INTERVAL '- 46 23:34:12' DAY TO SECOND)",_ive.format());
   }
 
   @Test
@@ -44,7 +44,7 @@ public class IntervalValueExpressionTester
   {
     _ive.parse("INTERVAL -'46 23:34:12' DAY TO SECOND / 20");
     // System.out.println(_ive.format());
-    assertEquals("Division not recognized!","INTERVAL - '46 23:34:12' DAY TO SECOND/20",_ive.format());
+    assertEquals("Division not recognized!","INTERVAL '- 46 23:34:12' DAY TO SECOND/20",_ive.format());
   }
 
   @Test
@@ -52,7 +52,7 @@ public class IntervalValueExpressionTester
   {
     _ive.parse("T.COL * INTERVAL -'46 23:34' DAY TO MINUTE + INTERVAL'3' MINUTE");
     // System.out.println(_ive.format());
-    assertEquals("Addition not recognized!","T.COL*INTERVAL - '46 23:34' DAY TO MINUTE + INTERVAL '3' MINUTE",_ive.format());
+    assertEquals("Addition not recognized!","T.COL*INTERVAL '- 46 23:34' DAY TO MINUTE + INTERVAL '3' MINUTE",_ive.format());
   }
 
   @Test
@@ -60,7 +60,7 @@ public class IntervalValueExpressionTester
   {
     _ive.parse("INTERVAL -'46 23:34' DAY TO MINUTE * INTERVAL'3' MINUTE");
     System.out.println(_ive.format());
-    assertEquals("Addition not recognized!","INTERVAL - '46 23:34' DAY TO MINUTE*INTERVAL '3' MINUTE",_ive.format());
+    assertEquals("Addition not recognized!","INTERVAL '- 46 23:34' DAY TO MINUTE*INTERVAL '3' MINUTE",_ive.format());
   }
 
   @Test
