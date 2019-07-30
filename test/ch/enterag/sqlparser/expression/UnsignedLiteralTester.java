@@ -116,7 +116,7 @@ public class UnsignedLiteralTester
   {
     _ul.parse("INTERVAL -'2' YEAR");
     System.out.println(_ul.format());
-    assertEquals("YEAR interval not recognized!","INTERVAL -'2' YEAR",_ul.format());
+    assertEquals("YEAR interval not recognized!","INTERVAL - '2' YEAR",_ul.format());
   }
   
   @Test
@@ -141,7 +141,7 @@ public class UnsignedLiteralTester
     // ErrorListener.getInstance().suppressException();
     _ul.parse("INTERVAL - '500' DAY(3)");
     // System.out.println(_ul.format());
-    assertEquals("DAY interval not recognized!","INTERVAL -'500' DAY(3)",_ul.format());
+    assertEquals("DAY interval not recognized!","INTERVAL - '500' DAY(3)",_ul.format());
   }
   
   @Test
@@ -159,7 +159,7 @@ public class UnsignedLiteralTester
     // ErrorListener.getInstance().suppressException();
     _ul.parse("INTERVAL -'500 23' DAY TO HOUR");
     // System.out.println(_ul.format());
-    assertEquals("DAY interval not recognized!","INTERVAL -'500 23' DAY(3) TO HOUR",_ul.format());
+    assertEquals("DAY interval not recognized!","INTERVAL - '500 23' DAY(3) TO HOUR",_ul.format());
   }
   
   @Test
@@ -186,7 +186,7 @@ public class UnsignedLiteralTester
     // ErrorListener.getInstance().suppressException();
     _ul.parse("INTERVAL -'0.123456789' SECOND(2,9)");
     // System.out.println(_ul.format());
-    assertEquals("SECOND interval not recognized!","INTERVAL -'0.123456789' SECOND(2, 9)",_ul.format());
+    assertEquals("SECOND interval not recognized!","INTERVAL - '0.123456789' SECOND(2, 9)",_ul.format());
   }
 
   @Test
@@ -195,7 +195,7 @@ public class UnsignedLiteralTester
     // ErrorListener.getInstance().suppressException();
     _ul.parse("INTERVAL -'500 14:30:25.123456789' DAY(3) TO SECOND(2,9)");
     // System.out.println(_ul.format());
-    assertEquals("DAY TO SECOND interval not recognized!","INTERVAL -'500 14:30:25.123456789' DAY(3) TO SECOND(9)",_ul.format());
+    assertEquals("DAY TO SECOND interval not recognized!","INTERVAL - '500 14:30:25.123456789' DAY(3) TO SECOND(9)",_ul.format());
   }
   
   @Test
