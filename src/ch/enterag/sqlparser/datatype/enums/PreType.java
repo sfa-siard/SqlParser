@@ -46,5 +46,15 @@ public enum PreType
     }
     return datatype;
   } /* getBySqlType */
-  
+  public static PreType getByKeyword(String sKeyword)
+  {
+    PreType datatype  = null;
+    for (int i = 0; (datatype == null) && (i < PreType.values().length); i++)
+    {
+      PreType dt = PreType.values()[i];
+      if (dt.getKeyword().equals(sKeyword))
+        datatype = dt;
+    }
+    return datatype;
+  } /* getByKeyword */
 }

@@ -115,7 +115,7 @@ public abstract class SqlLiterals
    * @param s string.
    * @return true, if it is a reserved key word.
    */
-  private static boolean isReservedKeyword(String s)
+  protected static boolean isReservedKeyword(String s)
   {
     boolean bReserved = false;
     K k = K.getByKeyword(s);
@@ -161,7 +161,7 @@ public abstract class SqlLiterals
    * @param sDelimited
    * @return true, if identifier is delimited, false otherwise.
    */
-  private static boolean isDelimited(String sDelimited)
+  protected static boolean isDelimited(String sDelimited)
   {
     return (sDelimited != null) && (sDelimited.length() >= 2) && 
       sDelimited.startsWith(sQUOTE) && sDelimited.endsWith(sQUOTE);
@@ -364,7 +364,7 @@ public abstract class SqlLiterals
   } /* getIdentifierEnd */
 
   /*------------------------------------------------------------------*/
-  /** unconsitionally quote  a catalog-qualified schema name for use in 
+  /** unconditionally quote  a catalog-qualified schema name for use in 
    * an SQL statement.
    * @param sCatalogName catalog name or null.
    * @param sUnqualifiedSchemaName schema name (must not be null).
