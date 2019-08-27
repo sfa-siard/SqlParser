@@ -20,7 +20,7 @@ public class CastSpecificationTester
   {
     _cs.parse("CAST (Test as INTEGER)");
     // System.out.println(_cs.format());
-    assertEquals("CAST as INTEGER not recognized!","CAST(TEST AS INTEGER)",_cs.format());
+    assertEquals("CAST as INTEGER not recognized!","CAST(TEST AS INT)",_cs.format());
   }
 
   @Test

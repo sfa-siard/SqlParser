@@ -20,14 +20,14 @@ public class AttributeDefinitionTester
   {
     _ad.parse("id INT");
     // System.out.println(_ad.format());
-    assertEquals("Simple attribute definition not recognized!","ID INTEGER",_ad.format());
+    assertEquals("Simple attribute definition not recognized!","ID INT",_ad.format());
   }
   @Test
   public void testComplex()
   {
     _ad.parse("complex_column ROW (field1 INT, field2 DOUBLE PRECISION, \"field3\" char(4)) ARRAY[5]");
     // System.out.println(cd.format());
-    assertEquals("Complex attribute definition not recognized!","COMPLEX_COLUMN ROW(FIELD1 INTEGER, FIELD2 DOUBLE PRECISION, \"field3\" CHARACTER(4)) ARRAY[5]",_ad.format());
+    assertEquals("Complex attribute definition not recognized!","COMPLEX_COLUMN ROW(FIELD1 INT, FIELD2 DOUBLE PRECISION, \"field3\" CHAR(4)) ARRAY[5]",_ad.format());
   }
   @Test
   public void testDefault()

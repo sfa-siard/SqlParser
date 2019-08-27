@@ -28,7 +28,7 @@ public class DropFunctionStatementTester
   {
     _dfs.parse("DROP Function cat1.sch1.countfunc2(in idDel integer) restrict");
     // System.out.println(_dfs.format());
-    assertEquals("DROP FUNCTION statement not recognized!","DROP FUNCTION CAT1.SCH1.COUNTFUNC2(IN IDDEL INTEGER) RESTRICT",_dfs.format());
+    assertEquals("DROP FUNCTION statement not recognized!","DROP FUNCTION CAT1.SCH1.COUNTFUNC2(IN IDDEL INT) RESTRICT",_dfs.format());
   }
 
 }

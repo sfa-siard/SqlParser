@@ -28,7 +28,7 @@ public class DropProcedureStatementTester
   {
     _dps.parse("DROP Procedure cat1.sch1.delproc(in idDel integer) restrict");
     // System.out.println(_dps.format());
-    assertEquals("DROP PROCEDURE statement not recognized!","DROP PROCEDURE CAT1.SCH1.DELPROC(IN IDDEL INTEGER) RESTRICT",_dps.format());
+    assertEquals("DROP PROCEDURE statement not recognized!","DROP PROCEDURE CAT1.SCH1.DELPROC(IN IDDEL INT) RESTRICT",_dps.format());
   }
 
 }
