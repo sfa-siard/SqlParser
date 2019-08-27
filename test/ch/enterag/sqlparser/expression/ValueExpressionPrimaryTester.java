@@ -221,7 +221,7 @@ public class ValueExpressionPrimaryTester
   {
     _vep.parse("CAST (Test as INTEGER)");
     // System.out.println(_vep.format());
-    assertEquals("CAST expression not recognized!","CAST(TEST AS INTEGER)",_vep.format());
+    assertEquals("CAST expression not recognized!","CAST(TEST AS INT)",_vep.format());
   }
 
   @Test
