@@ -31,7 +31,7 @@ public class DataTypeTester
   public void testRow()
   {
     _dt.parse("ROW (field1 INT, field2 DOUBLE PRECISION, \"field3\" char(4))");
-    assertEquals("ROW type not recognized!","ROW(FIELD1 INTEGER, FIELD2 DOUBLE PRECISION, \"field3\" CHARACTER(4))",_dt.format());
+    assertEquals("ROW type not recognized!","ROW(FIELD1 INT, FIELD2 DOUBLE PRECISION, \"field3\" CHAR(4))",_dt.format());
   }
   @Test
   public void testRef()
@@ -43,19 +43,19 @@ public class DataTypeTester
   public void testArray()
   {
     _dt.parse("INT ARRAY[5]");
-    assertEquals("ARRAY type not recognized!","INTEGER ARRAY[5]",_dt.format());
+    assertEquals("ARRAY type not recognized!","INT ARRAY[5]",_dt.format());
   }
   @Test
   public void testMultiset()
   {
     _dt.parse("CHAR(5) MULTISET");
-    assertEquals("MULTISET type not recognized!","CHARACTER(5) MULTISET",_dt.format());
+    assertEquals("MULTISET type not recognized!","CHAR(5) MULTISET",_dt.format());
   }
   @Test
   public void testComplex1()
   {
     _dt.parse("ROW (field1 INT, field2 DOUBLE PRECISION, \"field3\" char(4)) ARRAY[5]");
-    assertEquals("Complex ARRAY type not recognized!","ROW(FIELD1 INTEGER, FIELD2 DOUBLE PRECISION, \"field3\" CHARACTER(4)) ARRAY[5]",_dt.format());
+    assertEquals("Complex ARRAY type not recognized!","ROW(FIELD1 INT, FIELD2 DOUBLE PRECISION, \"field3\" CHAR(4)) ARRAY[5]",_dt.format());
   }
 
 }
