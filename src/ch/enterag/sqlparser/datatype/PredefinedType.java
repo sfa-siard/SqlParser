@@ -253,7 +253,7 @@ public class PredefinedType
   {
     String sLength = "";
     if (getLength() != iUNDEFINED)
-      sLength = sLEFT_PAREN + String.valueOf(getLength() + sRIGHT_PAREN);
+      sLength = sLEFT_PAREN + String.valueOf(getLength()) + sRIGHT_PAREN;
     return sLength;
   } /* formatLength */
   
