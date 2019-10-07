@@ -375,6 +375,10 @@ sqlArgument
   : valueExpression 
   | generalizedExpression 
   | targetSpecification
+  | DEFAULT
+  | NULL
+  | ARRAY LEFT_BRACKET RIGHT_BRACKET // empty array
+  | MULTISET LEFT_BRACKET RIGHT_BRACKET // empty multiset
   ;
 generalizedExpression : valueExpression AS udtName;
 targetSpecification
