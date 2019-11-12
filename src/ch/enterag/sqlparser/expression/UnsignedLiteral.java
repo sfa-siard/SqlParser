@@ -380,6 +380,17 @@ public class UnsignedLiteral
   } /* initNationalCharacterString */
 
   /*------------------------------------------------------------------*/
+  /** initialize an unsigned literal from bit string.
+   * @param bufBytes bytes value.
+   */
+  public void initBitString( String sBitString )
+  {
+    _il.enter(sBitString);
+    setBitString(sBitString);
+    _il.exit();
+  } /* initBitString */
+
+  /*------------------------------------------------------------------*/
   /** initialize an unsigned literal from bytes.
    * @param bufBytes bytes value.
    */

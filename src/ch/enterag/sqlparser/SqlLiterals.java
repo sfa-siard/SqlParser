@@ -115,7 +115,7 @@ public abstract class SqlLiterals
    * @param s string.
    * @return true, if it is a reserved key word.
    */
-  private static boolean isReservedKeyword(String s)
+  protected static boolean isReservedKeyword(String s)
   {
     boolean bReserved = false;
     K k = K.getByKeyword(s);
@@ -161,7 +161,7 @@ public abstract class SqlLiterals
    * @param sDelimited
    * @return true, if identifier is delimited, false otherwise.
    */
-  private static boolean isDelimited(String sDelimited)
+  protected static boolean isDelimited(String sDelimited)
   {
     return (sDelimited != null) && (sDelimited.length() >= 2) && 
       sDelimited.startsWith(sQUOTE) && sDelimited.endsWith(sQUOTE);
@@ -364,7 +364,7 @@ public abstract class SqlLiterals
   } /* getIdentifierEnd */
 
   /*------------------------------------------------------------------*/
-  /** unconsitionally quote  a catalog-qualified schema name for use in 
+  /** unconditionally quote  a catalog-qualified schema name for use in 
    * an SQL statement.
    * @param sCatalogName catalog name or null.
    * @param sUnqualifiedSchemaName schema name (must not be null).
@@ -797,6 +797,7 @@ public abstract class SqlLiterals
     if (sParsed != null)
     {
       int iSign = 1;
+      /* permitted by standard but not supported by Postgres */
       if (sParsed.startsWith(sMINUS))
       {
         iSign = -1;
@@ -807,13 +808,11 @@ public abstract class SqlLiterals
       {
         String sIntervalQualifier = sParsed.substring(iEndQuote+1).trim().toUpperCase();
         sParsed = sParsed.substring(1,iEndQuote);
-        /*** it does not make sense, to permit the sign within the quoted part!
         if (sParsed.startsWith(sMINUS))
         {
           iSign = -iSign;
           sParsed = sParsed.substring(1).trim();
         }
-        ***/
         /* analyze interval qualifier <start> TO <end> or <start> */
         String sStart = sIntervalQualifier;
         String sEnd = null;
@@ -1150,9 +1149,13 @@ public abstract class SqlLiterals
             iSecondsPrecision = sNanos.length();
         }
       }
-      sFormatted = sINTERVAL_LITERAL_PREFIX + sSP; 
+      sFormatted = sINTERVAL_LITERAL_PREFIX + sSP;
+      /*** is allowed by standard but not liked by Postgres
       if (ivValue.getSign() < 0)
-        sFormatted = sFormatted + sMINUS;
+        sFormatted = sFormatted + sMINUS + sSP;
+      ***/
+      if (ivValue.getSign() < 0)
+        sValue = sMINUS + sSP + sValue;
       sFormatted = sFormatted + formatStringLiteral(sValue) + 
         sSP + ifStart.getKeywords();
       if ((iPrecision >= 0) || ((ifStart == IntervalField.SECOND) && (iSecondsPrecision >= 0)))

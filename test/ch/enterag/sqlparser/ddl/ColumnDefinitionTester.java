@@ -20,14 +20,14 @@ public class ColumnDefinitionTester
   {
     _cd.parse("id INT");
     // System.out.println(_cd.format());
-    assertEquals("Simple column definition not recognized!","ID INTEGER",_cd.format());
+    assertEquals("Simple column definition not recognized!","ID INT",_cd.format());
   }
   @Test
   public void testComplex()
   {
     _cd.parse("complex_column ROW (field1 INT, field2 DOUBLE PRECISION, \"field3\" char(4)) ARRAY[5]");
     // System.out.println(_cd.format());
-    assertEquals("DEFAULT column definition not recognized!","COMPLEX_COLUMN ROW(FIELD1 INTEGER, FIELD2 DOUBLE PRECISION, \"field3\" CHARACTER(4)) ARRAY[5]",_cd.format());
+    assertEquals("DEFAULT column definition not recognized!","COMPLEX_COLUMN ROW(FIELD1 INT, FIELD2 DOUBLE PRECISION, \"field3\" CHAR(4)) ARRAY[5]",_cd.format());
   }
   @Test
   public void testDefault()

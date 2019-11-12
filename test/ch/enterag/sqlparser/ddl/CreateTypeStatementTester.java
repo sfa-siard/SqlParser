@@ -20,7 +20,7 @@ public class CreateTypeStatementTester
   {
     _cts.parse("create type shoe_size as integer final");
     // System.out.println(_cts.format());
-    assertEquals("Distinct type statement not recognized!","CREATE TYPE SHOE_SIZE AS INTEGER FINAL",_cts.format());
+    assertEquals("Distinct type statement not recognized!","CREATE TYPE SHOE_SIZE AS INT FINAL",_cts.format());
   }
   
   @Test
@@ -40,11 +40,11 @@ public class CreateTypeStatementTester
 _cts.parse(sStatement);
 // System.out.println(_cts.format());
     String sExpected = "CREATE TYPE ADDRESS AS(\r\n" +
-        "  NUMBER CHARACTER(6),\r\n" +
+        "  NUMBER CHAR(6),\r\n" +
         "  STREET ROW(STREET_NAME VARCHAR(35), STREET_TYPE VARCHAR(10)),\r\n" +
         "  CITY VARCHAR(35),\r\n" +
-        "  STATE CHARACTER(2),\r\n" +
-        "  ZIP_CODE ROW(BASE CHARACTER(5), PLUS4 CHARACTER(4))\r\n" +
+        "  STATE CHAR(2),\r\n" +
+        "  ZIP_CODE ROW(BASE CHAR(5), PLUS4 CHAR(4))\r\n" +
         ") NOT FINAL";
     assertEquals("Attributes definition not recognized!",sExpected,_cts.format());
     
@@ -67,11 +67,11 @@ _cts.parse(sStatement);
     _cts.parse(sStatement);
     // System.out.println(_cts.format());
     String sExpected = "CREATE TYPE ADDRESS AS(\r\n" +
-        "  \"number\" CHARACTER(6) DEFAULT 'Street',\r\n" +
+        "  \"number\" CHAR(6) DEFAULT 'Street',\r\n" +
         "  STREET ROW(STREET_NAME VARCHAR(35), STREET_TYPE VARCHAR(10)),\r\n" +
         "  CITY VARCHAR(35),\r\n" +
-        "  \"state\" CHARACTER(2),\r\n" +
-        "  ZIP_CODE ROW(BASE CHARACTER(5), PLUS4 CHARACTER(4))\r\n" +
+        "  \"state\" CHAR(2),\r\n" +
+        "  ZIP_CODE ROW(BASE CHAR(5), PLUS4 CHAR(4))\r\n" +
         ") NOT FINAL";
     assertEquals("Default not recognized!",sExpected,_cts.format());
   }
@@ -92,7 +92,7 @@ _cts.parse(sStatement);
         "CREATE TYPE MOVIE AS(\r\n" +
         "  TITLE VARCHAR(100),\r\n" +
         "  DESCRIPTION VARCHAR(500),\r\n" +
-        "  RUNS INTEGER\r\n" +
+        "  RUNS INT\r\n" +
         ") NOT FINAL\r\n" +
         "METHOD LENGTH_INTERVAL() RETURNS INTERVAL HOUR(2) TO MINUTE";
     assertEquals("Method specification not recognized!",sExpected,_cts.format());
@@ -130,8 +130,8 @@ _cts.parse(sStatement);
     _cts.parse(sStatement);
     // System.out.println(_cts.format());
     String sExpected = "CREATE TYPE DVD UNDER MOVIE AS(\r\n"+
-                       "  STOCK_NUMBER INTEGER,\r\n"+
-                       "  RENTAL_PRICE DECIMAL(5, 2),\r\n"+
+                       "  STOCK_NUMBER INT,\r\n"+
+                       "  RENTAL_PRICE DEC(5, 2),\r\n"+
                        "  EXTRA_FEATURES FEATURE_DESC ARRAY[10]\r\n"+
                        ") INSTANTIABLE NOT FINAL";
     assertEquals("Subtype specifications not recognized!",sExpected,_cts.format());
@@ -151,7 +151,7 @@ _cts.parse(sStatement);
     String sExpected = "CREATE TYPE MOVIE AS(\r\n"+
                        "  TITLE VARCHAR(100),\r\n"+
                        "  DESCRIPTION VARCHAR(500),\r\n"+
-                       "  RUNS INTEGER\r\n"+
+                       "  RUNS INT\r\n"+
                        ") INSTANTIABLE NOT FINAL REF IS SYSTEM GENERATED";
     assertEquals("Table-valued specifications not recognized!",sExpected,_cts.format());
   }

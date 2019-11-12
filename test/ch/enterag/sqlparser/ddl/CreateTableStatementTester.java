@@ -21,8 +21,8 @@ public class CreateTableStatementTester
     _cts.parse("CREATE table test(id int, ch char(5))");
     // System.out.println(_cts.format());
     String sExpected = "CREATE TABLE TEST(\r\n" +
-      "  ID INTEGER,\r\n" +
-      "  CH CHARACTER(5)\r\n" +
+      "  ID INT,\r\n" +
+      "  CH CHAR(5)\r\n" +
       ")";
     assertEquals("Simple create table statement not recognized!",sExpected,_cts.format());
   }
@@ -40,7 +40,7 @@ public class CreateTableStatementTester
     _cts.parse(sInput);
     // System.out.println(_cts.format());
     String sExpected = "CREATE TABLE SCH.TEST(\r\n" +
-      "  ID INTEGER NOT NULL,\r\n" +
+      "  ID INT NOT NULL,\r\n" +
       "  \"Note\" VARCHAR(255),\r\n" +
       "  MYDATE DATE,\r\n" +
       "  PRIMARY KEY(ID, MYDATE),\r\n" +

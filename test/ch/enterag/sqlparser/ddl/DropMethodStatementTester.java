@@ -28,7 +28,7 @@ public class DropMethodStatementTester
   {
     _dms.parse("DROP Method cat1.sch1.delmeth(in idDel integer) for cat.sch.ty restrict");
     // System.out.println(_dms.format());
-    assertEquals("DROP METHOD statement not recognized!","DROP METHOD CAT1.SCH1.DELMETH(IN IDDEL INTEGER) FOR CAT.SCH.TY RESTRICT",_dms.format());
+    assertEquals("DROP METHOD statement not recognized!","DROP METHOD CAT1.SCH1.DELMETH(IN IDDEL INT) FOR CAT.SCH.TY RESTRICT",_dms.format());
   }
 
 }

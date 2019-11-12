@@ -20,7 +20,7 @@ public class FieldDefinitionTester
   public void testFieldDefinition()
   {
     _fd.parse("\"SomeField\" INTEGER REFERENCES ARE CHECKED");
-    assertEquals("Field definition not recognized!","\"SomeField\" INTEGER REFERENCES ARE CHECKED",_fd.format());
+    assertEquals("Field definition not recognized!","\"SomeField\" INT REFERENCES ARE CHECKED",_fd.format());
   }
 
 }

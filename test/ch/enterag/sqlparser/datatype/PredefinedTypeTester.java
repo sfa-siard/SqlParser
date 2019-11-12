@@ -20,7 +20,7 @@ public class PredefinedTypeTester
   public void testFormat()
   {
     _pdt.initialize(PreType.CHAR, 5, null, -1, -1, -1, null, null);
-    assertEquals("Format from fields failed!","CHARACTER(5)",_pdt.format());
+    assertEquals("Format from fields failed!","CHAR(5)",_pdt.format());
   }
   
   @Test
@@ -28,7 +28,7 @@ public class PredefinedTypeTester
   {
     _pdt.parse("CHARACTER /* some coment */(54)");
     // pdt.listTokens();
-    assertEquals("CHARACTER type not recognized!","CHARACTER(54)",_pdt.format());
+    assertEquals("CHARACTER type not recognized!","CHAR(54)",_pdt.format());
   }
 
   @Test
@@ -36,14 +36,14 @@ public class PredefinedTypeTester
   {
     _pdt.parse("CHARACTER(54) -- and some intesting stuff");
     // pdt.listTokens();
-    assertEquals("CHARACTER type not recognized!","CHARACTER(54)",_pdt.format());
+    assertEquals("CHARACTER type not recognized!","CHAR(54)",_pdt.format());
   }
   
   @Test
   public void testParseChar()
   {
     _pdt.parse("CHARacter(54)");
-    assertEquals("CHARACTER type not recognized!","CHARACTER(54)",_pdt.format());
+    assertEquals("CHARACTER type not recognized!","CHAR(54)",_pdt.format());
   }
 
   @Test
@@ -113,7 +113,7 @@ public class PredefinedTypeTester
   public void testParseDecimal()
   {
     _pdt.parse("dec(32)");
-    assertEquals("DECIMAL type not recognized!","DECIMAL(32)",_pdt.format());
+    assertEquals("DECIMAL type not recognized!","DEC(32)",_pdt.format());
   }
   
   @Test
@@ -127,7 +127,7 @@ public class PredefinedTypeTester
   public void testParseInt()
   {
     _pdt.parse("int");
-    assertEquals("INTEGER type not recognized!","INTEGER",_pdt.format());
+    assertEquals("INTEGER type not recognized!","INT",_pdt.format());
   }
   
   @Test

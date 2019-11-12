@@ -221,7 +221,7 @@ public class ValueExpressionPrimaryTester
   {
     _vep.parse("CAST (Test as INTEGER)");
     // System.out.println(_vep.format());
-    assertEquals("CAST expression not recognized!","CAST(TEST AS INTEGER)",_vep.format());
+    assertEquals("CAST expression not recognized!","CAST(TEST AS INT)",_vep.format());
   }
 
   @Test
@@ -259,9 +259,9 @@ public class ValueExpressionPrimaryTester
   @Test
   public void testNewSpecification()
   {
-    _vep.parse("new c1.s1.r1()");
-    // System.out.println(_vep.format());
-    assertEquals("NEW specification not recognized!","NEW C1.S1.R1()",_vep.format());
+    _vep.parse("new c1.s1.r1(null)");
+    System.out.println(_vep.format());
+    assertEquals("NEW specification not recognized!","NEW C1.S1.R1(NULL)",_vep.format());
   }
   
   @Test
