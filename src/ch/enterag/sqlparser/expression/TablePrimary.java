@@ -142,11 +142,11 @@ public class TablePrimary
   /*------------------------------------------------------------------*/
   /** check, if the table has a column with the given name.
    * @param sColumn column name.
-   * @return true, if the table ahs a column with the given name.
+   * @return true, if the table has a column with the given name.
    */
   public boolean hasColumn(String sColumn)
   {
-    return getColumnValues().keySet().contains(sColumn);
+    return getColumnTypes().keySet().contains(sColumn);
   } /* hasColumn */
   
   private List<String> _listColumnNames = new ArrayList<String>();
