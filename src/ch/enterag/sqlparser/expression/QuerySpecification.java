@@ -205,7 +205,7 @@ public class QuerySpecification
   } /* isGroupedOk */
   
   /*------------------------------------------------------------------*/
-  /** look up the registered data type of a query column.
+  /** look up the primary table containing a query column.
    * @param sqlstmt SQL statement.
    * @param idcColumn column.
    * @return data type of the query column.
@@ -246,6 +246,8 @@ public class QuerySpecification
             {
               if (tp.getCorrelationName().get().equals(sCorrelationName))
                 tpFound = tp;
+              else if (tp.getCorrelationName().get().equalsIgnoreCase(sCorrelationName))
+                tpFound = tp;
             }
             else
             {
@@ -254,6 +256,10 @@ public class QuerySpecification
                 tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
                 tp.getTableName().getName());
               if (qiTable.equals(qi))
+                tpFound = tp;
+              else if ((((qiTable.getCatalog() == null) && (qi.getCatalog() == null)) || qiTable.getCatalog().equalsIgnoreCase(qi.getCatalog())) &&
+                qiTable.getSchema().equalsIgnoreCase(qi.getSchema())&&
+                qiTable.getName().equalsIgnoreCase(qi.getName()))
                 tpFound = tp;
             }
           }
