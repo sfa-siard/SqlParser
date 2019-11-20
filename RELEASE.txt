@@ -1,6 +1,9 @@
 Release Notes for SqlParser 1.0
 ===============================
 
+1.1.69
+Added evaluation to CaseExpression
+
 1.1.58
 Added DEFAULT, NULL, empty ARRAY/MULTISET to SqlArgument
  

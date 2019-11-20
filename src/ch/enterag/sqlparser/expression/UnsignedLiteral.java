@@ -381,7 +381,7 @@ public class UnsignedLiteral
 
   /*------------------------------------------------------------------*/
   /** initialize an unsigned literal from bit string.
-   * @param bufBytes bytes value.
+   * @param sBitString bit string value.
    */
   public void initBitString( String sBitString )
   {
