@@ -208,17 +208,17 @@ public class QuerySpecification
   private TablePrimary getTablePrimary(SqlStatement sqlstmt, QualifiedId qiTable, TablePrimary tp)
   {
     TablePrimary tpFound = null;
-    if (tp.getTableReference() != null)
-      tpFound = getTablePrimary(sqlstmt, qiTable, tp.getTableReference());
-    if ((tpFound == null) && (tp.getTableName().getName() != null))
+    if ((tp.getTableName().getName() != null))
     {
       QualifiedId qi = new QualifiedId(
         tp.getTableName().getCatalog() != null? tp.getTableName().getCatalog(): sqlstmt.getDefaultCatalog(),
         tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
         tp.getTableName().getName());
-      if (qi.equals(qiTable))
+      if ((qiTable.getName() == null) || qi.equals(qiTable))
         tpFound = tp;
     }
+    if ((tpFound == null) && (tp.getTableReference() != null))
+      tpFound = getTablePrimary(sqlstmt, qiTable, tp.getTableReference());
     return tpFound;
   } /* getTablePrimary */
   
@@ -226,12 +226,12 @@ public class QuerySpecification
   private TablePrimary getTablePrimary(SqlStatement sqlstmt, QualifiedId qiTable, TableReference tr)
   {
     TablePrimary tp = null;
-    if (tr.getTableReference() != null)
+    if (tr.getTablePrimary() != null)
+      tp = getTablePrimary(sqlstmt, qiTable,tr.getTablePrimary());
+    if ((tp == null) && (tr.getTableReference() != null))
       tp = getTablePrimary(sqlstmt, qiTable, tr.getTableReference());
     if ((tp == null) && (tr.getSecondTableReference() != null))
       tp = getTablePrimary(sqlstmt, qiTable,tr.getSecondTableReference());
-    if ((tp == null) && (tr.getTablePrimary() != null))
-      tp = getTablePrimary(sqlstmt, qiTable,tr.getTablePrimary());
     return tp;
   } /* getTablePrimary */
   
@@ -263,7 +263,6 @@ public class QuerySpecification
         qiTable.setCatalog(list.get(iSize-4));
       else
         qiTable.setCatalog(sqlstmt.getDefaultCatalog());
-      // We just take the first matching. This could be enhanced ...
       for (int iTable = 0; (tpFound == null) && (iTable < getTableReferences().size()); iTable++)
       {
         TablePrimary tp = getTablePrimary(sqlstmt, qiTable, getTableReferences().get(iTable));
@@ -280,8 +279,6 @@ public class QuerySpecification
             }
           }
         }
-        else
-          throw new IllegalArgumentException("Only primary tables can be evaluated!");
       }
     }
     else
