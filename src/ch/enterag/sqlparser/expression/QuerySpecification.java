@@ -270,9 +270,8 @@ public class QuerySpecification
         {
           if (tp.hasColumn(sColumnName))
           {
-            if (iSize == 1)
-              tpFound = tp; // raw column name: use first matching!
-            else if (tp.getCorrelationName().isSet())
+            tpFound = tp;
+            if (tp.getCorrelationName().isSet())
             {
               if (tp.getCorrelationName().get().equals(sCorrelationName))
                 tpFound = tp;
