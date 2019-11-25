@@ -205,6 +205,12 @@ public class QuerySpecification
   } /* isGroupedOk */
 
   /*------------------------------------------------------------------*/
+  protected boolean equalTables(QualifiedId qiTable1, QualifiedId qiTable2)
+  {
+    return qiTable1.equals(qiTable2);
+  } /* equalTables */
+  
+  /*------------------------------------------------------------------*/
   private TablePrimary getTablePrimary(SqlStatement sqlstmt, QualifiedId qiTable, TablePrimary tp, String sColumnName)
   {
     TablePrimary tpFound = null;
@@ -218,7 +224,7 @@ public class QuerySpecification
         tp.getTableName().getCatalog() != null? tp.getTableName().getCatalog(): sqlstmt.getDefaultCatalog(),
         tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
         tp.getCorrelationName().get());
-      if ((qiTable.getName() == null) || qiTable.equals(qiName) || qiTable.equals(qiCorrelation))
+      if ((qiTable.getName() == null) || equalTables(qiTable,qiName) || equalTables(qiTable,qiCorrelation))
       {
         if (tp.hasColumn(sColumnName))
           tpFound = tp;
