@@ -165,9 +165,9 @@ public class TablePrimary
   } /* setColumnNames */
 
   private Map<String, DataType> _mapColumnTypes = new HashMap<String, DataType>();
-  private Map<String, DataType> getColumnTypes() { return _mapColumnTypes; }
+  protected Map<String, DataType> getColumnTypes() { return _mapColumnTypes; }
   private Map<String, Object> _mapColumnValues = new HashMap<String,Object>();
-  private Map<String, Object> getColumnValues() { return _mapColumnValues; }
+  protected Map<String, Object> getColumnValues() { return _mapColumnValues; }
   /*------------------------------------------------------------------*/
   /** set data type of a table column.
    * @param sColumnName name of column.
