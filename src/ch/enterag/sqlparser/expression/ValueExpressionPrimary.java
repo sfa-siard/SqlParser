@@ -778,6 +778,49 @@ public class ValueExpressionPrimary
   } /* initialize */
 
   /*------------------------------------------------------------------*/
+  /* initialize a value expression primary.
+   * Shallow copy constructor.
+   */
+  public void initCopy(ValueExpressionPrimary vep)
+  {
+    _il.enter();
+    setUnsignedLit(vep.getUnsignedLit());
+    setGeneralValueSpecification(vep.getGeneralValueSpecification());
+    setAggregateFunc(vep.getAggregateFunc());
+    setGroupingOp(vep.getGroupingOp());
+    setWindowFunc(vep.getWindowFunc());
+    setScalarSubq(vep.getScalarSubq());
+    setCaseExpression(vep.getCaseExpression());
+    setCastSpecification(vep.getCastSpecification());
+    setFieldName(vep.getFieldName());
+    setSubtypeTreatment(vep.getSubtypeTreatment());
+    setMethodQualifier(vep.getMethodQualifier());
+    setMethodName(vep.getMethodName());
+    setSqlArguments(vep.getSqlArguments());
+    setDataType(vep.getDataType());
+    setUdtName(vep.getUdtName());
+    setNew(vep.isNew());
+    setRoutineName(vep.getRoutineName());
+    setDeref(vep.getDeref());
+    setAttributeOrMethodName(vep.getAttributeOrMethodName());
+    setReferenceResolution(vep.getReferenceResolution());
+    setArrayValueConstructor(vep.isArrayValueConstructor());
+    setMultisetValueConstructor(vep.isMultisetValueConstructor());
+    setTableMultisetValueConstructor(vep.isTableMultisetValueConstructor());
+    setCollectionValueComponents(vep.getCollectionValueComponents());
+    setQueryExpression(vep.getQueryExpression());
+    setSortSpecifications(vep.getSortSpecifications());
+    setFirstArrayValueExpression(vep.getFirstArrayValueExpression());
+    setSecondArrayValueExpression(vep.getSecondArrayValueExpression());
+    setNumericValueExpression(vep.getNumericValueExpression());
+    setArray(vep.getArray());
+    setMultisetValueExpression(vep.getMultisetValueExpression());
+    setSequenceName(vep.getSequenceName());
+    setValueExpressionPrimary(vep.getValueExpressionPrimary());
+    _il.exit();
+  } /* initCopy */
+
+  /*------------------------------------------------------------------*/
   /** initialize a value expression primary.
    * @param ul unsigned literal.
    */
