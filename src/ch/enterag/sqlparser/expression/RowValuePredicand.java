@@ -42,7 +42,7 @@ public class RowValuePredicand
   
   private CommonValueExpression _cve = null;
   public CommonValueExpression getCommonValueExpression() { return _cve; }
-  private void setCommonValueExpression(CommonValueExpression cve) { _cve = cve; }
+  public void setCommonValueExpression(CommonValueExpression cve) { _cve = cve; }
   
   /*------------------------------------------------------------------*/
   /** format the row value predicand.
