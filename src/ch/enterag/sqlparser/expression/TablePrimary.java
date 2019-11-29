@@ -142,11 +142,11 @@ public class TablePrimary
   /*------------------------------------------------------------------*/
   /** check, if the table has a column with the given name.
    * @param sColumn column name.
-   * @return true, if the table ahs a column with the given name.
+   * @return true, if the table has a column with the given name.
    */
   public boolean hasColumn(String sColumn)
   {
-    return getColumnValues().keySet().contains(sColumn);
+    return getColumnTypes().keySet().contains(sColumn);
   } /* hasColumn */
   
   private List<String> _listColumnNames = new ArrayList<String>();
@@ -165,9 +165,9 @@ public class TablePrimary
   } /* setColumnNames */
 
   private Map<String, DataType> _mapColumnTypes = new HashMap<String, DataType>();
-  private Map<String, DataType> getColumnTypes() { return _mapColumnTypes; }
+  protected Map<String, DataType> getColumnTypes() { return _mapColumnTypes; }
   private Map<String, Object> _mapColumnValues = new HashMap<String,Object>();
-  private Map<String, Object> getColumnValues() { return _mapColumnValues; }
+  protected Map<String, Object> getColumnValues() { return _mapColumnValues; }
   /*------------------------------------------------------------------*/
   /** set data type of a table column.
    * @param sColumnName name of column.

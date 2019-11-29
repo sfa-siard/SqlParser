@@ -168,7 +168,7 @@ public abstract class SqlLiterals
   } /* isDelimited */
 
   /*------------------------------------------------------------------*/
-  /** return the identifier starting at iOffset as a delimited
+  /** return the identifier starting at 0 as a delimited
    * identifier (with quotes and not converted to uppercase).
    * @param s string containing identifier, possibly delimited.
    * @return "normalized" identifier

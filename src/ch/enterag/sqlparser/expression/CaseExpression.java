@@ -4,6 +4,7 @@ import java.util.*;
 
 import ch.enterag.sqlparser.*;
 import ch.enterag.sqlparser.antlr4.*;
+import ch.enterag.sqlparser.datatype.DataType;
 import ch.enterag.sqlparser.generated.*;
 import ch.enterag.utils.logging.*;
 
@@ -184,6 +185,90 @@ public class CaseExpression
     }
     return sExpression;
   } /* format */
+  
+  /*------------------------------------------------------------------*/
+  /** get data type of this case expression from the context 
+   * of a query.
+   * @param ss sql statement.
+   * @return data type.
+   */
+  public DataType getDataType(SqlStatement ss)
+  {
+    DataType dt = null;
+    List<DataType> listTypes = new ArrayList<DataType>();
+    if (isNullIf())
+    {
+      listTypes.add(getFirstValueExpression().getDataType(ss));
+      listTypes.add(getSecondValueExpression().getDataType(ss));
+    }
+    else if (isCoalesce())
+    {
+      for (int iValueExpression = 0; iValueExpression < getValueExpressions().size(); iValueExpression++)
+        listTypes.add(getValueExpressions().get(iValueExpression).getDataType(ss));
+    }
+    else
+    {
+      for (int iWhenResult = 0; iWhenResult < getWhenResults().size(); iWhenResult++)
+        listTypes.add(getWhenResults().get(iWhenResult).getDataType(ss));
+      if (getElseResult() != null)
+        listTypes.add(getElseResult().getDataType(ss));
+    }
+    dt = listTypes.get(0); // we should probably return the "widest" data type
+    return dt;
+  } /* getDataType */
+  
+  /*------------------------------------------------------------------*/
+  /** evaluate this case expression against the context of a query.
+   * @param ss sql statement.
+   * @param bAggregated true, if the value occurs in the argument of an
+   *        aggregating function.
+   * @return value.
+   */
+  public Object evaluate(SqlStatement ss, boolean bAggregated)
+  {
+    Object oValue = null;
+    if (isNullIf())
+    {
+      Object o1 = getFirstValueExpression().evaluate(ss,bAggregated);
+      Object o2 = getFirstValueExpression().evaluate(ss,bAggregated);
+      if (!o1.equals(o2))
+        oValue = o1;
+    }
+    else if (isCoalesce())
+    {
+      for (int iValueExpression = 0; (oValue == null) && (iValueExpression < getValueExpressions().size()); iValueExpression++)
+      {
+        Object o = getValueExpressions().get(iValueExpression).evaluate(ss,bAggregated);
+        if (o != null)
+          oValue = o;
+      }
+    }
+    else
+    {
+      if (getWhenOperands().size() > 0)
+      {
+        Object oTestValue = getRowValuePredicand().evaluate(ss, bAggregated);
+        for (int iWhenOperand = 0; iWhenOperand < getWhenOperands().size(); iWhenOperand++)
+        {
+          Object oTestCondition = getWhenOperands().get(iWhenOperand).evaluate(ss,bAggregated);
+          if (oTestValue.equals(oTestCondition))
+            oValue = getWhenResults().get(iWhenOperand).evaluate(ss, bAggregated);
+        }
+      }
+      else if (getBooleanValueExpressions().size() > 0)
+      {
+        for (int iBooleanValue = 0; (oValue == null) && (iBooleanValue < getBooleanValueExpressions().size()); iBooleanValue++)
+        {
+          Object oTest = getBooleanValueExpressions().get(iBooleanValue).evaluate(ss, bAggregated);
+          if (Boolean.TRUE.equals((Boolean)oTest))
+            oValue = getWhenResults().get(iBooleanValue).evaluate(ss, bAggregated);
+        }
+      }
+      if (oValue == null)
+        oValue = getElseResult().evaluate(ss,bAggregated);
+    }
+    return oValue;
+  } /* evaluate */
   
   /*------------------------------------------------------------------*/
   /** parse the case expression from the parsing tree context.

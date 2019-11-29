@@ -203,6 +203,50 @@ public class QuerySpecification
     }
     return bGroupedOk;
   } /* isGroupedOk */
+
+  /*------------------------------------------------------------------*/
+  protected boolean equalTables(QualifiedId qiTable1, QualifiedId qiTable2)
+  {
+    return qiTable1.equals(qiTable2);
+  } /* equalTables */
+  
+  /*------------------------------------------------------------------*/
+  private TablePrimary getTablePrimary(SqlStatement sqlstmt, QualifiedId qiTable, TablePrimary tp, String sColumnName)
+  {
+    TablePrimary tpFound = null;
+    if ((tp.getTableName().getName() != null))
+    {
+      QualifiedId qiName = new QualifiedId(
+        tp.getTableName().getCatalog() != null? tp.getTableName().getCatalog(): sqlstmt.getDefaultCatalog(),
+        tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
+        tp.getTableName().getName());
+      QualifiedId qiCorrelation = new QualifiedId(
+        tp.getTableName().getCatalog() != null? tp.getTableName().getCatalog(): sqlstmt.getDefaultCatalog(),
+        tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
+        tp.getCorrelationName().get());
+      if ((qiTable.getName() == null) || equalTables(qiTable,qiName) || equalTables(qiTable,qiCorrelation))
+      {
+        if (tp.hasColumn(sColumnName))
+          tpFound = tp;
+      }
+    }
+    if ((tpFound == null) && (tp.getTableReference() != null))
+      tpFound = getTablePrimary(sqlstmt, qiTable, tp.getTableReference(),sColumnName);
+    return tpFound;
+  } /* getTablePrimary */
+  
+  /*------------------------------------------------------------------*/
+  private TablePrimary getTablePrimary(SqlStatement sqlstmt, QualifiedId qiTable, TableReference tr,String sColumnName)
+  {
+    TablePrimary tp = null;
+    if (tr.getTablePrimary() != null)
+      tp = getTablePrimary(sqlstmt, qiTable,tr.getTablePrimary(),sColumnName);
+    if ((tp == null) && (tr.getTableReference() != null))
+      tp = getTablePrimary(sqlstmt, qiTable, tr.getTableReference(),sColumnName);
+    if ((tp == null) && (tr.getSecondTableReference() != null))
+      tp = getTablePrimary(sqlstmt, qiTable,tr.getSecondTableReference(),sColumnName);
+    return tp;
+  } /* getTablePrimary */
   
   /*------------------------------------------------------------------*/
   /** look up the registered data type of a query column.
@@ -218,48 +262,21 @@ public class QuerySpecification
     if ((iSize > 0) && (iSize <= 4))
     {
       String sColumnName = list.get(iSize-1);
-      QualifiedId qi = new QualifiedId();
-      String sCorrelationName = null;
-      if (iSize == 2)
-        sCorrelationName = list.get(0);
+      QualifiedId qiTable = new QualifiedId();
       if (iSize > 1)
-        qi.setName(list.get(iSize-2));
+        qiTable.setName(list.get(iSize-2));
       if (iSize > 2)
-        qi.setSchema(list.get(iSize-3));
+        qiTable.setSchema(list.get(iSize-3));
       else
-        qi.setSchema(sqlstmt.getDefaultSchema());
+        qiTable.setSchema(sqlstmt.getDefaultSchema());
       if (iSize > 3)
-        qi.setCatalog(list.get(iSize-4));
+        qiTable.setCatalog(list.get(iSize-4));
       else
-        qi.setCatalog(sqlstmt.getDefaultCatalog());
-      // We just take the first matching. This could be enhanced ...
+        qiTable.setCatalog(sqlstmt.getDefaultCatalog());
       for (int iTable = 0; (tpFound == null) && (iTable < getTableReferences().size()); iTable++)
       {
-        TablePrimary tp = getTableReferences().get(iTable).getTablePrimary();
-        if (tp != null)
-        {
-          if (tp.hasColumn(sColumnName))
-          {
-            if (iSize == 1)
-              tpFound = tp; // raw column name: use first matching!
-            else if (tp.getCorrelationName().isSet())
-            {
-              if (tp.getCorrelationName().get().equals(sCorrelationName))
-                tpFound = tp;
-            }
-            else
-            {
-              QualifiedId qiTable = new QualifiedId(
-                tp.getTableName().getCatalog() != null? tp.getTableName().getCatalog(): sqlstmt.getDefaultCatalog(),
-                tp.getTableName().getSchema() != null? tp.getTableName().getSchema(): sqlstmt.getDefaultSchema(),
-                tp.getTableName().getName());
-              if (qiTable.equals(qi))
-                tpFound = tp;
-            }
-          }
-        }
-        else
-          throw new IllegalArgumentException("Only primary tables can be evaluated!");
+        TablePrimary tp = getTablePrimary(sqlstmt, qiTable, getTableReferences().get(iTable),sColumnName);
+        tpFound = tp;
       }
     }
     else

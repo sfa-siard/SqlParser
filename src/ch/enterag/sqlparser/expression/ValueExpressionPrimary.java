@@ -611,6 +611,8 @@ public class ValueExpressionPrimary
       dt = getUnsignedLit().getDataType();
     else if (getGeneralValueSpecification() != null)
       dt = getGeneralValueSpecification().getDataType(ss);
+    else if (getCaseExpression() != null)
+      dt = getCaseExpression().getDataType(ss);
     else if (getAggregateFunc() != null)
       dt = getAggregateFunc().getDataType(ss);
     else

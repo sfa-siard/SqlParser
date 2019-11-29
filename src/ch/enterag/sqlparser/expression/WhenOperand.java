@@ -5,6 +5,8 @@ import java.util.*;
 
 import ch.enterag.sqlparser.*;
 import ch.enterag.sqlparser.antlr4.*;
+import ch.enterag.sqlparser.datatype.DataType;
+import ch.enterag.sqlparser.datatype.PredefinedType;
 import ch.enterag.sqlparser.expression.enums.*;
 import ch.enterag.sqlparser.generated.*;
 import ch.enterag.sqlparser.identifier.*;
@@ -382,6 +384,36 @@ public class WhenOperand
     }
     return s;
   } /* format */
+  
+  /*------------------------------------------------------------------*/
+  /** get data type of this when operand from the context 
+   * of a query.
+   * @param ss sql statement.
+   * @return data type (is always Boolean for WhenOperand).
+   */
+  public DataType getDataType(SqlStatement ss)
+  {
+    
+    DataType dt = getSqlFactory().newDataType();
+    PredefinedType ptType = getSqlFactory().newPredefinedType();
+    ptType.initBooleanType();
+    dt.initPredefinedDataType(ptType);
+    return dt;
+  } /* getDataType */
+  
+  /*------------------------------------------------------------------*/
+  /** evaluate this case expression against the context of a query.
+   * @param ss sql statement.
+   * @param bAggregated true, if the value occurs in the argument of an
+   *        aggregating function.
+   * @return value.
+   */
+  public Object evaluate(SqlStatement ss, boolean bAggregated)
+  {
+    throw new IllegalArgumentException("Evaluation of WhenOperand is not yet implemented!");
+    //Object oValue = null;
+    //return oValue;
+  } /* evaluate */
   
   /*------------------------------------------------------------------*/
   /** parse the when operand from the parsing tree context.
