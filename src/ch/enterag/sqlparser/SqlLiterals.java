@@ -115,7 +115,7 @@ public abstract class SqlLiterals
    * @param s string.
    * @return true, if it is a reserved key word.
    */
-  protected static boolean isReservedKeyword(String s)
+  public static boolean isReservedKeyword(String s)
   {
     boolean bReserved = false;
     K k = K.getByKeyword(s);
