@@ -121,11 +121,13 @@ public class QuerySpecificationTester
     System.out.println(gvs2sub.format());
   }
   
+  /**
   @Test
   public void testBug()
   {
     _qs.parse("SELECT TechArchiveID FROM ReportView_ITS_Archivschränke As Tmp GROUP BY TechArchiveID HAVING Count(*)>1");
     System.out.println(_qs.format());
   }
+  **/
   
 }
