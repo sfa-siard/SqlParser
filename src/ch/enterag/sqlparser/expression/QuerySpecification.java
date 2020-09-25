@@ -66,8 +66,10 @@ public class QuerySpecification
       getSqlFactory().setAggregates(false);
       setWhereCondition(getSqlFactory().newBooleanValueExpression());
       getWhereCondition().parse(ctx.booleanValueExpression());
+      /**
       if (getSqlFactory().hasAggregates())
         throwParseCancellationException("Aggregate function in WHERE clause!");
+      **/
       return QuerySpecification.this;
     }
     @Override
@@ -89,8 +91,10 @@ public class QuerySpecification
       getSqlFactory().setAggregates(false);
       setHavingCondition(getSqlFactory().newBooleanValueExpression());
       getHavingCondition().parse(ctx.booleanValueExpression());
+      /**
       if (getSqlFactory().hasAggregates())
         throwParseCancellationException("Aggregate function in HAVING clause!");
+      **/
       return QuerySpecification.this;
     }
     @Override
