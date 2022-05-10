@@ -21,10 +21,10 @@ Run all tests:
 ant test
 ```
 
-Build and deploy:
+Create the release:
 
 ```shell
-ant deploy
+ant release
 ```
 
 ## Documentation

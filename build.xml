@@ -188,7 +188,7 @@ Created    : 13.02.2018, Hartwig Thomas
 	</target>
 	
   <!-- build the SqlParser classes -->
-  <target name="build" depends="init,revision,generate">
+  <target name="build" depends="init,generate">
     <echo message="${ant.project.name}: build"/>
     <!-- without this, the package-info class is not generated! -->
     <touch>
@@ -205,10 +205,23 @@ Created    : 13.02.2018, Hartwig Thomas
       destdir="${dirbuildclasses}">
     </javac>
   </target>
-  
-  <!-- create the JAR file containing all classes -->
+
+  <!-- create the JAR file containing all classes WITHOUT the new revision number-->
   <property name="jarfile" value="${ant.project.name}.jar"/>
-  <target name="jar" depends="build">
+  <target name="jar-test" depends="build">
+    <echo message="${ant.project.name}: jar"/>
+    <jar jarfile="${dirdist}/${jarfile}"
+         manifest="${filemanifest}">
+      <fileset dir="${dirbuildclasses}">
+        <include name="**/*.class"/>
+        <include name="**/res/*.*"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- create the JAR file containing all classes with the new revision number-->
+  <property name="jarfile" value="${ant.project.name}.jar"/>
+  <target name="jar" depends="javadoc, revision">
     <echo message="${ant.project.name}: jar"/>
     <jar jarfile="${dirdist}/${jarfile}"
        manifest="${filemanifest}">
@@ -230,7 +243,7 @@ Created    : 13.02.2018, Hartwig Thomas
   <property name="filedmltests" value="dml-tests"/>
   <property name="classexpressiontestsuite" value="ch.enterag.sqlparser.expression._ExpressionTestSuite"/>
   <property name="fileexpressiontests" value="expression-tests"/>
-	<target name="test" depends="jar">
+	<target name="test" depends="jar-test">
     <echo message="${ant.project.name}: tests"/>
 		<!-- build the tests -->
     <javac debug="true" debuglevel="${debuglevel}"
@@ -361,7 +374,7 @@ Created    : 13.02.2018, Hartwig Thomas
   </target>
   
   <!-- create the ZIP file with binaries for Windows and LINUX -->
-  <target name="zip" depends="javadoc">
+  <target name="release" depends="jar">
     <echo message="${ant.project.name}: zip"/>
     <zip zipfile="${dirdist}/${ant.project.name}-${version}.${revision}.zip">
       <zipfileset dir="${dirdist}" prefix="${ant.project.name}/${dirlib}">
