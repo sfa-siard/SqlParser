@@ -135,6 +135,12 @@ public class PredefinedType
       return visitChildren(ctx);
     }
     @Override
+    public PredefinedType visitDatalinkType(SqlParser.DatalinkTypeContext ctx)
+    {
+      setType(PreType.DATALINK);
+      return visitChildren(ctx);
+    }
+    @Override
     public PredefinedType visitDateType(SqlParser.DateTypeContext ctx)
     {
       setType(PreType.DATE);
@@ -309,7 +315,6 @@ public class PredefinedType
   
   /*------------------------------------------------------------------*/
   /** Add TIME ZONE to type.
-   * @param sType type.
    * @return type with TIME ZONE.
    */
   protected String formatTimeZone()
