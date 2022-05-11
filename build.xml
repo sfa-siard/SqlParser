@@ -119,7 +119,6 @@ Created    : 13.02.2018, Hartwig Thomas
 		</condition>
 		<echo message="branch: ${branch}"/>
 		<echo message="branch.master: ${branch.master}"/>
-    <echo message="build.properties.configured: ${build.properties.configured}"/>
 	</target>
   
   <!-- increment revision and update manifest -->
@@ -137,7 +136,7 @@ Created    : 13.02.2018, Hartwig Thomas
     <property file="${filerevisionproperties}"/>
     <echo message="revision: ${revision}" />
     <replaceregexp file="${filemanifest}" 
-      match="^Implementation-Version: .*$" 
+      match="^Implementation-Version: .*$"
       replace="Implementation-Version: ${version}.${revision}"
       flags="gm"/>
     <replaceregexp file="${filemanifest}" 
@@ -403,6 +402,11 @@ Created    : 13.02.2018, Hartwig Thomas
     <echo message="${ant.project.name}: deploy"/>
     <delete dir="${dirdeploy}/${ant.project.name}"/>
     <unzip dest="${dirdeploy}" src="${dirdist}/${ant.project.name}-${version}.${revision}.zip" />
+  </target>
+
+  <target name="copy-dependencies" depends="check">
+    <echo message="Copy jar files from dependency projects on local file system"/>
+    <copy file="../EnterUtilities/dist/enterutils.jar" todir="${dirlib}" failonerror="false"/>
   </target>
   
 </project>
