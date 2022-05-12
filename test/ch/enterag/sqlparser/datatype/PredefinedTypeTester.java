@@ -207,4 +207,10 @@ public class PredefinedTypeTester
     _pdt.parse("INTERVAL SECOND(2,5)");
     assertEquals("INTERVAL SECOND(2,5)!","INTERVAL SECOND(2, 5)",_pdt.format());
   }
+
+  @Test
+  public void testParseDatalink() {
+    _pdt.parse("DatALINK");
+    assertEquals("DATALINK type not recognized!", "DATALINK", _pdt.format());
+  }
 }
