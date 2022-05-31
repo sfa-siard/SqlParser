@@ -47,6 +47,7 @@ predefinedType
   | timeType
   | timestampType
   | intervalType
+  | datalinkType
   ;
 
 charType : (CHARACTER | CHAR) (LEFT_PAREN length RIGHT_PAREN)?;
@@ -72,6 +73,7 @@ dateType : DATE;
 timeType : TIME (LEFT_PAREN secondsDecimals RIGHT_PAREN)? withOrWithoutTimeZone?;
 timestampType : TIMESTAMP (LEFT_PAREN secondsDecimals RIGHT_PAREN)? withOrWithoutTimeZone?;
 intervalType : INTERVAL intervalQualifier;
+datalinkType : DATALINK;
 intervalQualifier
   : YEAR (LEFT_PAREN precision RIGHT_PAREN)? (TO MONTH)?
   | MONTH (LEFT_PAREN precision RIGHT_PAREN)?

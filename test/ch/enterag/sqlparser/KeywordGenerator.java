@@ -88,6 +88,7 @@ public class KeywordGenerator
     "CURSOR",
     "CYCLE",
     "DATA",
+    "DATALINK",
     "DATE",
     "DAY",
     "DEALLOCATE",

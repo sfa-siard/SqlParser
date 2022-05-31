@@ -81,6 +81,7 @@ public enum K
   CURSOR("CURSOR", true),
   CYCLE("CYCLE", true),
   DATA("DATA", true),
+  DATALINK("DATALINK", true),
   DATE("DATE", true),
   DAY("DAY", true),
   DEALLOCATE("DEALLOCATE", true),

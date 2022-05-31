@@ -43,7 +43,9 @@ public enum PreType
   TIMESTAMP(Types.TIMESTAMP, K.TIMESTAMP.getKeyword(),
     K.TIMESTAMP.getKeyword()+SqlBase.sSP+K.WITH.getKeyword()+SqlBase.sSP+K.TIME.getKeyword()+SqlBase.sSP+K.ZONE.getKeyword()),
   XML(Types.SQLXML, K.XML.getKeyword()),
-  INTERVAL(Types.OTHER, K.INTERVAL.getKeyword()); // INTERVAL not supported by JDBC!
+  INTERVAL(Types.OTHER, K.INTERVAL.getKeyword()), // INTERVAL not supported by JDBC!
+  DATALINK(Types.DATALINK, K.DATALINK.getKeyword());
+
   private String _sKeyword = null;
   public String getKeyword() { return _sKeyword; }
   private Set<String> _setAliases = null;
