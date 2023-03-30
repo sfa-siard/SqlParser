@@ -37,13 +37,17 @@ oldOrNewValue
   | OLD TABLE AS? correlationName
   | NEW TABLE AS? correlationName
   ;
-triggeredAction : (FOR EACH (ROW | STATEMENT))? 
+triggeredAction : (FOR EACH (ROW | STATEMENT))?
   (WHEN LEFT_PAREN booleanValueExpression RIGHT_PAREN)?
   (BEGIN ATOMIC routineBody END | routineBody);
+
+
 
 sqlParameterDeclarations : sqlParameterDeclaration (COMMA sqlParameterDeclaration)*;
 sqlParameterDeclaration : parameterMode? parameterName? parameterType RESULT?;
 parameterType : dataType (AS LOCATOR)?;
+
+
 
 returnsClause : RETURNS returnsType;
 returnsType : returnsDataType resultCast? | returnsTableType;
