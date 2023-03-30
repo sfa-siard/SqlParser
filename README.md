@@ -6,25 +6,12 @@ It can also handle primitive evaluation of single-table queries.
 
 ## Getting started (for developers)
 
-For building the binaries, Java JDK (1.8 or higher) and Ant must
-have been installed. Adjust build.properties according to your system (if needed)
-
-Generate sources from SQL Definition (var/*.g4) files. This step is necessary to resolve compilation errors in your IDE
-
 ```shell
-ant generate
+./gradlew clean build
 ```
 
-Run all tests:
-
 ```shell
-ant test
-```
-
-Create the release:
-
-```shell
-ant release
+./gradlew test
 ```
 
 ## Documentation
