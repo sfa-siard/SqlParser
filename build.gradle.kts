@@ -51,15 +51,21 @@ tasks.register<Jar>("testJar") {
     from(project.the<SourceSetContainer>()["test"].output)
 }
 
+tasks.register<JavaExec>("keywordgenerator") {
+    mainClass.set("ch.enterag.sqlparser.KeywordGenerator")
+    classpath = sourceSets["test"].runtimeClasspath
+}
+
+tasks.build {
+    dependsOn("keywordgenerator")
+}
 tasks.generateGrammarSource {
+    outputDirectory = File("src/main/java/ch/enterag/sqlparser/generated")
+    include("Sql.g4")
     arguments = arguments + listOf(
         "-visitor",
         "-no-listener",
-        "-long-messages",
         "-package",
         "ch.enterag.sqlparser.generated",
-        "-o",
-        "./src/main/java/ch/enterag/sqlparser/generated",
-        "Sql.g4"
     )
 }
