@@ -8,7 +8,7 @@ Copyright  : 2016 Enter AG, Rüti ZH, Switzerland
 Created    : 11.03.2016, Hartwig Thomas
 ======================================================================*/
 grammar SqlDdlRoutine;
-import SqlIdentifier, SqlEnums;
+import SqlIdentifier, SqlEnums, SqlExpression;
 
 dropProcedureStatement : DROP SPECIFIC? PROCEDURE routineName (LEFT_PAREN sqlParameterDeclarations? RIGHT_PAREN)? dropBehavior;
 dropFunctionStatement : DROP SPECIFIC? FUNCTION routineName (LEFT_PAREN sqlParameterDeclarations? RIGHT_PAREN)? dropBehavior;
