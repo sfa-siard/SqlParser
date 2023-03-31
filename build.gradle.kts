@@ -41,13 +41,13 @@ tasks.test {
 }
 
 tasks.jar {
-    archiveFileName.set("jdbcmssql.jar")
+    archiveFileName.set("sqlparser.jar")
 }
 
 tasks.getByName("assemble").dependsOn("testJar")
 
 tasks.register<Jar>("testJar") {
-    archiveFileName.set("jdbcmssql-test.jar")
+    archiveFileName.set("sqlparser-test.jar")
     from(project.the<SourceSetContainer>()["test"].output)
 }
 
