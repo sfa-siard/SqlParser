@@ -8,7 +8,7 @@ Copyright  : 2016 Enter AG, Rüti ZH, Switzerland
 Created    : 12.04.2016, Hartwig Thomas
 ======================================================================*/
 grammar SqlExpression;
-import SqlIdentifier, SqlEnums;
+import SqlIdentifier, SqlEnums, SqlDataTypes;
 
 querySpecification : SELECT setQuantifier? selectList 
   fromClause

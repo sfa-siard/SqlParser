@@ -11,8 +11,9 @@ have been installed. Adjust build.properties according to your system (if needed
 
 Generate sources from SQL Definition (var/*.g4) files. This step is necessary to resolve compilation errors in your IDE
 
+### Run all tests
 ```shell
-ant generate
+./gradlew clean build
 ```
 
 Run all tests:

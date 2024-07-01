@@ -8,8 +8,8 @@ import ch.enterag.utils.lang.Execute;
 public class KeywordGenerator
 {
 
-  private static final String sENUM = "src/ch/enterag/sqlparser/K.java";
-  private static final String sKEYWORD = "var/sqlparser/LexSql.g4";
+  private static final String sENUM = "src/main/java/ch/enterag/sqlparser/K.java";
+  private static final String sKEYWORD = "src/main/antlr/LexSql.g4";
   private static final String[] asReserved = new String[]
   {
     "A",
