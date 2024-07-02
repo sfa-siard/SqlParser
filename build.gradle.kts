@@ -21,17 +21,10 @@ dependencies {
     antlr("org.antlr:antlr4-runtime:4.5.2-1")
     antlr("org.antlr:antlr4-master:4.5.2-1")
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.2.0.jre8")
-
-    // legacy dependencies -
-    implementation(fileTree("lib") { include("*.jar") })
-
-    // test dependencies
-    testImplementation("junit:junit:4.13.2")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    implementation("ch.admin.bar:enterutilities:v2.2.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
     testImplementation("org.junit.vintage:junit-vintage-engine")
-
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 }
 
 tasks.test {

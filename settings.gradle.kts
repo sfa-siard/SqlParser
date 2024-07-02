@@ -10,9 +10,8 @@ import java.net.URI
 rootProject.name = "SqlParser"
 include("lib")
 
-/*
 sourceControl {
     gitRepository(URI.create("https://github.com/sfa-siard/EnterUtilities.git")) {
         producesModule("ch.admin.bar:enterutilities")
     }
-}*/
+}
