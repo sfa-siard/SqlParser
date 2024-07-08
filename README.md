@@ -4,7 +4,7 @@ This package contains a parser for SQL:2008 statements. Its main intention is pa
 ## Prerequisites
 For building the binaries, Java JDK (1.8 or higher) must be installed. Generating sources from SQL Definition (*.g4) files is necessary to resolve compilation errors in your IDE, before running any tests.
 
-### Generate sources and build the project shell
+### Generate sources and build the project
 ```shell
 ./gradlew clean build
 ```
