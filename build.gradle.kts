@@ -1,5 +1,5 @@
 plugins {
-    id("java")
+    `java-library`
     id("antlr")
     id("pl.allegro.tech.build.axion-release") version "1.14.3"
 }
