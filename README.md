@@ -9,7 +9,7 @@ For building the binaries, Java JDK (1.8 or higher) must be installed. Generatin
 ./gradlew clean build
 ```
 
-Run all tests:
+### Run all tests:
 ```shell
 ./gradlew check
 ```
