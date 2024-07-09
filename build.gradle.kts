@@ -1,3 +1,6 @@
+import java.text.DateFormat
+import java.util.*
+
 plugins {
     `java-library`
     id("antlr")
@@ -39,6 +42,7 @@ tasks.register<JavaExec>("keywordgenerator") {
 tasks.build {
     dependsOn("keywordgenerator")
 }
+
 tasks.generateGrammarSource {
     outputDirectory = File("src/main/java/ch/enterag/sqlparser/generated")
     include("Sql.g4")
@@ -48,4 +52,17 @@ tasks.generateGrammarSource {
             "-package",
             "ch.enterag.sqlparser.generated",
     )
+}
+
+tasks.withType(Jar::class) {
+    manifest {
+        attributes["Manifest-Version"] = "1.0"
+        attributes["Created-By"] = "Hartwig Thomas, Enter AG, Rüti ZH, Switzerland; Puzzle ITC GmbH, Switzerland"
+        attributes["Specification-Title"] = "SQL Parser"
+        attributes["Specification-Vendor"] = "Swiss Federal Archives, Berne, Switzerland"
+        attributes["Implementation-Title"] = "SQL Parser"
+        attributes["Implementation-Version"] = archiveVersion
+        attributes["Implementation-Vendor"] = "Swiss Federal Archives, Berne, Switzerland"
+        attributes["Built-Date"] = DateFormat.getDateInstance().format(Date())
+    }
 }
