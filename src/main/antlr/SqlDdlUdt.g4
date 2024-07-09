@@ -8,7 +8,7 @@ Copyright  : 2016 Enter AG, Rüti ZH, Switzerland
 Created    : 11.03.2016, Hartwig Thomas
 ======================================================================*/
 grammar SqlDdlUdt;
-import SqlDataTypes, SqlDdlRoutine;
+import SqlDataTypes, SqlDdlRoutine, SqlDdlTable;
 
 dropTypeStatement : DROP TYPE udtName dropBehavior;
 createTypeStatement : CREATE TYPE udtName subTypeClause? 
