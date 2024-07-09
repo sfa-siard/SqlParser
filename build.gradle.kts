@@ -31,17 +31,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.jar {
-    archiveFileName.set("sqlparser.jar")
-}
-
-tasks.getByName("assemble").dependsOn("testJar")
-
-tasks.register<Jar>("testJar") {
-    archiveFileName.set("sqlparser-test.jar")
-    from(project.the<SourceSetContainer>()["test"].output)
-}
-
 tasks.register<JavaExec>("keywordgenerator") {
     mainClass.set("ch.enterag.sqlparser.KeywordGenerator")
     classpath = sourceSets["test"].runtimeClasspath
