@@ -11,8 +11,9 @@ group = "ch.admin.bar"
 version = scmVersion.version
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 repositories {
@@ -24,7 +25,7 @@ dependencies {
     antlr("org.antlr:antlr4-runtime:4.5.2-1")
     antlr("org.antlr:antlr4-master:4.5.2-1")
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.2.0.jre8")
-    implementation("ch.admin.bar:enterutilities:v2.2.4")
+    implementation("ch.admin.bar:enterutilities:v2.2.5")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
     testImplementation("org.junit.vintage:junit-vintage-engine")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.1")
