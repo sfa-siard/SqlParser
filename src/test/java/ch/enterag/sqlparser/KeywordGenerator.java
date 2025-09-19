@@ -38,6 +38,7 @@ public class KeywordGenerator
     "BERNOULLI",
     "BETWEEN",
     "BIGINT",
+    "BIT",
     "BINARY",
     "BLOB",
     "BOOLEAN",

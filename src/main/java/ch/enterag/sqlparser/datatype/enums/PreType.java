@@ -21,6 +21,8 @@ public enum PreType
   NCLOB(Types.NCLOB, K.NCLOB.getKeyword(),
     K.NCHAR.getKeyword()+SqlBase.sSP+K.LARGE.getKeyword()+SqlBase.sSP+K.OBJECT.getKeyword(),
     K.NATIONAL.getKeyword()+SqlBase.sSP+K.CHARACTER.getKeyword()+SqlBase.sSP+K.LARGE.getKeyword()+SqlBase.sSP+K.OBJECT.getKeyword()),
+  BIT(Types.BIT, K.BIT.getKeyword()),
+  BIT_VARYING(Types.BIT, K.BIT.getKeyword()+SqlBase.sSP+K.VARYING.getKeyword()),
   BINARY(Types.BINARY, K.BINARY.getKeyword()),
   VARBINARY(Types.VARBINARY, K.VARBINARY.getKeyword(),
     K.BINARY.getKeyword()+SqlBase.sSP+K.VARYING.getKeyword()),

@@ -31,6 +31,7 @@ public enum K
   BERNOULLI("BERNOULLI", true),
   BETWEEN("BETWEEN", true),
   BIGINT("BIGINT", true),
+  BIT("BIT", true),
   BINARY("BINARY", true),
   BLOB("BLOB", true),
   BOOLEAN("BOOLEAN", true),
