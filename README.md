@@ -1,3 +1,9 @@
+> **⚠️ ARCHIVED REPOSITORY**  
+> This repository is archived and no longer maintained. All development has moved to the new monorepo:  
+> **https://github.com/sfa-siard/siard-suite**  
+> 
+> Please create any issues or pull requests in the new monorepo, which now contains all submodules including this one.
+
 # SqlParser - SIARD 2.2 SQL:2008 Parser
 This package contains a parser for SQL:2008 statements. Its main intention is parsing and formatting, but it can also handle primitive evaluation of single-table queries.
 
